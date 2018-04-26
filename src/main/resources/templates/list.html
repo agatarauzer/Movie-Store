@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>List of movies</title>
+</head>
+<body>
+<h1>All movies:</h1>
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Director</th>
+        <th>Year</th>
+    </tr>
+    <tr th:each="movie: ${movieList}">
+        <td th:text="${movie.title}"></td>
+        <td th:text="${movie.director}"></td>
+        <td th:text="${movie.year}"></td>
+    </tr>
+</table>
+<a th:href="@{/}">Homepage</a>
+
+</body>
+</html>

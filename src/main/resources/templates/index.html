@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Movie manager</title>
+</head>
+<body>
+<h1>Add movie:</h1>
+<form th:action="@{/movie}" th:object="${movieModel}" method="post">
+    <p><input type="text" th:field="*{title}" placeholder="title" /></p>
+    <p><input type="text" th:field="*{director}" placeholder="director" /></p>
+    <p><input type="number" th:field="*{year}" placeholder="year" /></p>
+    <p><input type="submit" value="Add movie" /></p>
+</form>
+
+<a th:href="@{/movie}">List all movies</a>
+</body>
+</html>
