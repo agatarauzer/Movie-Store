@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
 import javax.validation.Valid;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,31 +23,21 @@ public class MovieControllerRest {
     }
 
     @GetMapping(path = "/movies", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Movie>> getAllMovies(@RequestParam(defaultValue = "title") String orderBy) {
+    public ResponseEntity<List<Movie>> getAllMovies() {
         List<Movie> movies = moviesRepository.findAll();
         if (movies.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
-        if ("title".equals(orderBy)) {
-            movies.sort(Comparator.comparing(Movie::getTitle));
-        }
-        else if ("director".equals(orderBy)) {
-            movies.sort(Comparator.comparing(Movie::getDirector));
-        }
-        else if ("year".equals(orderBy)) {
-            movies.sort(Comparator.comparing(Movie::getYear));
-        }
         return new ResponseEntity<>(movies, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Optional<Movie> getMovieById(@PathVariable("id") Long id) {
+    @GetMapping(path = "/search/{id:[0-9]+}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Optional<Movie> getMovieById(@PathVariable Long id) {
         return moviesRepository.findById(id);
     }
 
-    @GetMapping(path = "/{title}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Movie>> getMovieByTitle(@PathVariable("title") String title) {
+    @GetMapping(path = "/search/{title:[a-zA-Z]+}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Movie>> getMoviesByTitle(@PathVariable String title) {
         List<Movie> moviesByTitle = moviesRepository.findByTitle(title);
         if (moviesByTitle.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
