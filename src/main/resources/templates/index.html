@@ -2,17 +2,25 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"></meta>
-    <title>Movie manager</title>
+    <title>Movie store</title>
 </head>
 <body>
 <h1>Add movie:</h1>
-<form th:action="@{/movie}" th:object="${movieModel}" method="post">
-    <p><input type="text" th:field="*{title}" placeholder="title" /></p>
-    <p><input type="text" th:field="*{director}" placeholder="director" /></p>
-    <p><input type="number" th:field="*{year}" placeholder="year" /></p>
+<p th:if="validationMessage" th:text="${validationMessage}">Default validation message</p>
+<form action="#" method="post" th:action="@{/}" th:object="${movie}">
+    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title errors</p>
+    <input type="text" th:field="*{title}" placeholder="Title" />
+    <br /><br />
+    <p th:if="${#fields.hasErrors('director')}" th:errors="*{director}">Director errors</p>
+    <input type="text" th:field="*{director}" placeholder="Director" />
+    <br /><br />
+    <p th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year errors</p>
+    <input type="number" th:field="*{year}" placeholder="Year" />
+    <br /><br />
     <p><input type="submit" value="Add movie" /></p>
+    <br />
 </form>
 
-<a th:href="@{/movie}">List all movies</a>
+<a th:href="@{/movies}">List all movies</a>
 </body>
 </html>

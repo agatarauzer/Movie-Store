@@ -1,21 +1,25 @@
 package com.agatarauzer.model;
 
-
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
-@XmlRootElement
 @Entity
 public class Movie implements Serializable {
+
     @Id
     @GeneratedValue
     @Column(name = "movie_id")
     private Long id;
+
     @Column(nullable = false)
+    @NotEmpty(message = "Title is required")
     private String title;
+
     @Column(nullable = false)
+    @NotEmpty(message = "Director is required")
     private String director;
+
     @Column(length = 4)
     private Integer year;
 
@@ -55,7 +59,7 @@ public class Movie implements Serializable {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(Integer year) {
         this.year = year;
     }
 
