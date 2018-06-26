@@ -1,8 +1,7 @@
 package com.movie.store.controllerRest;
 
 import com.movie.store.mapper.MovieMapper;
-import com.movie.store.model.Movie;
-import com.movie.store.model.MovieDto;
+import com.movie.store.domain.MovieDto;
 import com.movie.store.service.DbService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -45,18 +44,3 @@ public class MovieControllerRest {
         service.deleteMovie(id);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

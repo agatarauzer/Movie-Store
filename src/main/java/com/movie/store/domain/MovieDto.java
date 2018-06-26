@@ -1,4 +1,4 @@
-package com.movie.store.model;
+package com.movie.store.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,16 +15,14 @@ public class MovieDto {
     private String director;
     private int year;
     private String genre;
-    private int rating;
-    private List<Actor> actors;
+    private List<Actor> actors = new ArrayList<>();
 
-    public MovieDto(Long id, String title, String director, int year, String genre, int rating) {
+    public MovieDto(Long id, String title, String director, int year, String genre, List<Actor> actors) {
         this.id = id;
         this.title = title;
         this.director = director;
         this.year = year;
         this.genre = genre;
-        this.rating = rating;
-        actors = new ArrayList<>();
+        this.actors = actors;
     }
 }
