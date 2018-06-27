@@ -1,5 +1,6 @@
 package com.movie.store.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,6 @@ public class Actor {
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "actors")
+    @JsonIgnoreProperties("actors")
     private List<Movie> movies;
 }

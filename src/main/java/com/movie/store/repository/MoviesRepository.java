@@ -8,7 +8,6 @@ import java.util.Optional;
 
 public interface MoviesRepository extends CrudRepository<Movie, Long> {
 
-
     @Override
     List<Movie> findAll();
 
@@ -22,5 +21,4 @@ public interface MoviesRepository extends CrudRepository<Movie, Long> {
     void deleteById(Long id);
 
     List<Movie> findByTitle(String title);
-
 }

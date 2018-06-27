@@ -27,8 +27,4 @@ public class ActorMapper {
                 .map(a -> new ActorDto(a.getId(), a.getName(), a.getMovies()))
                 .collect(Collectors.toList());
     }
-
-
-
-
 }

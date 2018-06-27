@@ -2,19 +2,20 @@ package com.movie.store.controllerRest;
 
 import com.movie.store.mapper.MovieMapper;
 import com.movie.store.domain.MovieDto;
-import com.movie.store.service.DbService;
+import com.movie.store.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/v2/movie-store")
 public class MovieControllerRest {
 
     @Autowired
-    private DbService service;
+    private MovieService service;
 
     @Autowired
     private MovieMapper movieMapper;

@@ -8,9 +8,6 @@ import java.util.List;
 public interface ActorsRepository extends CrudRepository<Actor, Long> {
 
     @Override
-    Actor save(Actor actor);
-
-    @Override
     List<Actor> findAll();
 
     List<Actor> findByName(String name);
@@ -18,6 +15,5 @@ public interface ActorsRepository extends CrudRepository<Actor, Long> {
     List<Actor> findByNameContaining(String name);
 
     List<Actor> findActorsByMoviesContaining(String title);
-
 
 }
