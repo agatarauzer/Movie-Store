@@ -13,5 +13,6 @@ public class UserEvaluationDto {
     private int rating;
     private MovieStatus status;
     private LocalDate dateOfWatching;
+    private String comment;
     private Movie movie;
 }

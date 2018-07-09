@@ -11,6 +11,7 @@ public class UserEvaluationMapper {
                 userEvaluationDto.getRating(),
                 userEvaluationDto.getStatus(),
                 userEvaluationDto.getDateOfWatching(),
+                userEvaluationDto.getComment(),
                 userEvaluationDto.getMovie());
     }
 
@@ -19,6 +20,7 @@ public class UserEvaluationMapper {
                 userEvaluation.getRating(),
                 userEvaluation.getStatus(),
                 userEvaluation.getDateOfWatching(),
+                userEvaluation.getComment(),
                 userEvaluation.getMovie());
     }
 }

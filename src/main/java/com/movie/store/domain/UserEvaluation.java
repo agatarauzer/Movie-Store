@@ -36,9 +36,11 @@ public class UserEvaluation {
     @JsonFormat(pattern = "dd MM yyyy")
     private LocalDate dateOfWatching;
 
+    @Column(name = "COMMENT")
+    private String comment;
+
     @OneToOne(mappedBy = "userEvaluation")
     private Movie movie;
-
 
 
 }
