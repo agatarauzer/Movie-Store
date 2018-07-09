@@ -11,9 +11,7 @@ import java.time.LocalDate;
 public class UserEvaluationDto {
     private Long id;
     private int rating;
-    private boolean watched;
-    private LocalDate dateWatched;
-    private String planned;
+    private MovieStatus status;
+    private LocalDate dateOfWatching;
     private Movie movie;
-
 }

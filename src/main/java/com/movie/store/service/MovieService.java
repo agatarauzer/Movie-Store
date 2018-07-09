@@ -1,7 +1,7 @@
 package com.movie.store.service;
 
 import com.movie.store.domain.Movie;
-import com.movie.store.repository.MoviesRepository;
+import com.movie.store.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,25 +11,25 @@ import java.util.Optional;
 @Service
 public class MovieService {
     @Autowired
-    private MoviesRepository moviesRepository;
+    private MovieRepository movieRepository;
 
     public List<Movie> getAllMovies() {
-        return moviesRepository.findAll();
+        return movieRepository.findAll();
     }
 
     public Optional<Movie> getMovie(final Long id) {
-        return moviesRepository.findById(id);
+        return movieRepository.findById(id);
     }
 
     public Movie saveMovie(final Movie movie) {
-        return moviesRepository.save(movie);
+        return movieRepository.save(movie);
     }
 
     public void deleteMovie(final Long id) {
-        moviesRepository.deleteById(id);
+        movieRepository.deleteById(id);
     }
 
     public List<Movie> getMovies(String title) {
-        return moviesRepository.findByTitle(title);
+        return movieRepository.findByTitle(title);
     }
 }

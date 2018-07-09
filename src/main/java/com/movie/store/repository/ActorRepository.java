@@ -1,11 +1,13 @@
 package com.movie.store.repository;
 
 import com.movie.store.domain.Actor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ActorsRepository extends CrudRepository<Actor, Long> {
+public interface ActorRepository extends CrudRepository<Actor, Long> {
 
     @Override
     List<Actor> findAll();
@@ -14,6 +16,6 @@ public interface ActorsRepository extends CrudRepository<Actor, Long> {
 
     List<Actor> findByNameContaining(String name);
 
-    List<Actor> findActorsByMoviesContaining(String title);
-
+    @Query
+    List<Actor> findActorsPlayedInMovieWithTitle(@Param("TITLE") String title);
 }

@@ -1,7 +1,7 @@
 package com.movie.store.service;
 
 import com.movie.store.domain.Actor;
-import com.movie.store.repository.ActorsRepository;
+import com.movie.store.repository.ActorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,21 +11,21 @@ import java.util.List;
 public class ActorService {
 
     @Autowired
-    private ActorsRepository actorsRepository;
+    private ActorRepository actorRepository;
 
     public List<Actor> getAllActors() {
-        return actorsRepository.findAll();
+        return actorRepository.findAll();
     }
 
     public List<Actor> getActorsByFullName(String name) {
-        return actorsRepository.findByName(name);
+        return actorRepository.findByName(name);
     }
 
     public List<Actor> getActorsByNameContaining(String word) {
-        return actorsRepository.findByNameContaining(word);
+        return actorRepository.findByNameContaining(word);
     }
 
     public List<Actor> getActorsByMoviesWith(String title) {
-        return actorsRepository.findActorsByMoviesContaining(title);
+        return actorRepository.findActorsPlayedInMovieWithTitle(title);
     }
 }

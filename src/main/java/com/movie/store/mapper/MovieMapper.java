@@ -16,7 +16,8 @@ public class MovieMapper {
                 movieDto.getDirector(),
                 movieDto.getYear(),
                 movieDto.getGenre(),
-                movieDto.getActors()
+                movieDto.getActors(),
+                movieDto.getUserEvaluation()
         );
     }
 
@@ -27,14 +28,15 @@ public class MovieMapper {
                 movie.getDirector(),
                 movie.getYear(),
                 movie.getGenre(),
-                movie.getActors()
+                movie.getActors(),
+                movie.getUserEvaluation()
         );
     }
 
     public List<MovieDto> mapToMovieDtoList(final List<Movie> movieList) {
         return movieList.stream()
                 .map(movie -> new MovieDto(movie.getId(), movie.getTitle(), movie.getDirector(),
-                        movie.getYear(), movie.getGenre(), movie.getActors()))
+                        movie.getYear(), movie.getGenre(), movie.getActors(), movie.getUserEvaluation()))
                 .collect(Collectors.toList());
     }
 }

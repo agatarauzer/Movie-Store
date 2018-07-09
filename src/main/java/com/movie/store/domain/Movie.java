@@ -1,6 +1,7 @@
 package com.movie.store.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +13,9 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "MOVIES")
+@AllArgsConstructor
+@Entity
+@Table(name = "MOVIES")
 public class Movie {
 
     @Id
@@ -33,7 +36,7 @@ public class Movie {
     private int year;
 
     @Column(name = "GENRE")
-    private String genre;
+    private GenresOfMovies genre;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "MOVIES_ACTORS", joinColumns = {@JoinColumn(name = "MOVIE_ID", referencedColumnName = "MOVIE_ID")},
@@ -45,12 +48,4 @@ public class Movie {
     @JoinColumn(name = "EVALUATION_ID")
     private UserEvaluation userEvaluation;
 
-    public Movie(long id, String title, String director, int year, String genre, List<Actor> actors) {
-        this.id = id;
-        this.title = title;
-        this.director = director;
-        this.year = year;
-        this.genre = genre;
-        this.actors = actors;
-    }
 }

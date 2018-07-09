@@ -1,5 +1,6 @@
 package com.movie.store.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Getter
 @Entity
-@Table(name = "USERS_EVALUATION")
+@Table(name = "USERS_EVALUATIONS")
 public class UserEvaluation {
 
     @Id
@@ -28,15 +29,25 @@ public class UserEvaluation {
     @Max(5)
     private int rating;
 
-    @Column(name = "WATCHED")
-    private boolean watched;
+    @Column(name = "STATUS")
+    private MovieStatus status;
 
     @Column(name="DATE_OF_WATCHING")
-    private LocalDate dateWatched;
-
-    @Column(name = "PLANNED")
-    private String planned;
+    @JsonFormat(pattern = "dd MM yyyy")
+    private LocalDate dateOfWatching;
 
     @OneToOne(mappedBy = "userEvaluation")
     private Movie movie;
+
+
+
 }
+
+
+
+
+
+
+
+
+

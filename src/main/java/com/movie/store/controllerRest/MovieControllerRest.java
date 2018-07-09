@@ -9,7 +9,7 @@ import org.springframework.http.MediaType;
 
 import java.util.List;
 
-@CrossOrigin(origins = "*")
+
 @RestController
 @RequestMapping("/v2/movie-store")
 public class MovieControllerRest {
@@ -43,5 +43,10 @@ public class MovieControllerRest {
     @DeleteMapping(value = "deleteMovie")
     public void deleteMovie(@RequestParam Long id) {
         service.deleteMovie(id);
+    }
+
+    @PutMapping(value = "updateMovie")
+    public MovieDto updateMovie(@RequestBody MovieDto movieDto) {
+        return movieMapper.mapToMovieDto(service.saveMovie(movieMapper.mapToMovie(movieDto)));
     }
 }
