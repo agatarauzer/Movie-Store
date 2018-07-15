@@ -17,10 +17,6 @@ public class ActorService {
         return actorRepository.findAll();
     }
 
-    public List<Actor> getActorsByFullName(String name) {
-        return actorRepository.findByName(name);
-    }
-
     public List<Actor> getActorsByNameContaining(String word) {
         return actorRepository.findByNameContaining(word);
     }

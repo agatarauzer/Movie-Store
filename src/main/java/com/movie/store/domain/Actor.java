@@ -10,15 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@NamedNativeQuery(name = "Actor.findActorsPlayedInMovieWithTitle",
+        query = "SELECT * FROM Actors " +
+                "   JOIN Movies_Actors ON Actors.actor_id = Movies_Actors.actor_id " +
+                "   JOIN Movies ON Movies.movie_id = Movies_Actors.movie_id " +
+                "WHERE Movies.title LIKE CONCAT('%', :title, '%') " +
+                "ORDER BY Actors.name",
+        resultClass = Actor.class)
+
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "ACTORS")
-@NamedQuery(name = "Actor.findActorsPlayedInMovieWithTitle",
-        query = "FROM Actor a JOIN a.movies m WHERE m.title = :TITLE"
-)
 
 public class Actor {
     @Id

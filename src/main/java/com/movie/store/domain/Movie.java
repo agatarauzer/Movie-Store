@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,18 +14,27 @@ import java.util.List;
 @NamedNativeQueries({
         @NamedNativeQuery(name = "Movie.getWatchedMovies",
                 query = "SELECT * " +
-                        "FROM Movies JOIN Users_Evaluations ON Movies.evaluation_id = Users_Evaluations.evaluation_id " +
+                        "FROM Movies " +
+                        "JOIN Users_Evaluations ON Movies.evaluation_id = Users_Evaluations.evaluation_id " +
                         "WHERE Users_Evaluations.status = 'watched' " +
                         "ORDER BY Movies.title",
                 resultClass = Movie.class
         ),
         @NamedNativeQuery(name = "Movie.getMoviesPlannedToWatch",
                 query = "SELECT * " +
-                        "FROM Movies JOIN Users_Evaluations ON Movies.evaluation_id = Users_Evaluations.evaluation_id " +
+                        "FROM Movies " +
+                        "JOIN Users_Evaluations ON Movies.evaluation_id = Users_Evaluations.evaluation_id " +
                         "WHERE Users_Evaluations.status = 'planned' " +
                         "ORDER BY Movies.title",
                 resultClass = Movie.class
-        )
+        ),
+        @NamedNativeQuery(name = "Movie.getMoviesWithRating",
+                query = "SELECT * " +
+                        "FROM Movies " +
+                        "JOIN Users_Evaluations ON Movies.evaluation_id = Users_Evaluations.evaluation_id " +
+                        "WHERE Users_Evaluations.rating = :rating " +
+                        "ORDER BY Movies.title",
+                resultClass = Movie.class)
 })
 
 @Getter
@@ -35,6 +45,7 @@ import java.util.List;
 public class Movie implements Serializable {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "MOVIE_ID", unique = true)
     private Long id;

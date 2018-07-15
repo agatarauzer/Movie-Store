@@ -1,4 +1,4 @@
-package com.movie.store.controllerRest;
+package com.movie.store.controller;
 
 import com.movie.store.domain.ActorDto;
 import com.movie.store.mapper.ActorMapper;
@@ -19,22 +19,17 @@ public class ActorController {
     @Autowired
     private ActorMapper actorMapper;
 
-    @GetMapping(value = "getActors")
+    @GetMapping(value = "actors")
     public List<ActorDto> getActors() {
         return actorMapper.mapToListActorDto(service.getAllActors());
     }
 
-    @GetMapping(value = "getActorsFullName")
-    public List<ActorDto> getActorsByFullName(@RequestParam String name) {
-        return actorMapper.mapToListActorDto(service.getActorsByFullName(name));
-    }
-
-    @GetMapping(value = "getActorsByName")
+    @GetMapping(value = "actors/name")
     public List<ActorDto> getActorsByNameContaining(@RequestParam String word) {
         return actorMapper.mapToListActorDto(service.getActorsByNameContaining(word));
     }
 
-    @GetMapping(value = "getActorsInMovie")
+    @GetMapping(value = "actors/movie")
     public List<ActorDto> getActorsByMovieTitle(@RequestParam String title) {
         return actorMapper.mapToListActorDto(service.getActorsByMoviesWith(title));
     }

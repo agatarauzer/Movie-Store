@@ -42,6 +42,14 @@ public class UserEvaluation {
     @OneToOne(mappedBy = "userEvaluation")
     private Movie movie;
 
+    public UserEvaluation(long id, int rating, String status, LocalDate dateOfWatching, String comment) {
+        this.id = id;
+        this.rating = rating;
+        this.status = status;
+        this.dateOfWatching = dateOfWatching;
+        this.comment = comment;
+    }
+
 }
 
 

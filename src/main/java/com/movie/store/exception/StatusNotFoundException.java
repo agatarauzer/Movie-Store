@@ -1,4 +1,4 @@
-package com.movie.store.exceptions;
+package com.movie.store.exception;
 
 public class StatusNotFoundException extends Exception {
 }

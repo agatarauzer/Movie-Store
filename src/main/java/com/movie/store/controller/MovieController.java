@@ -1,11 +1,11 @@
-package com.movie.store.controllerRest;
+package com.movie.store.controller;
 
 import com.movie.store.domain.Movie;
-import com.movie.store.validators.MovieGenreValidator;
-import com.movie.store.validators.MovieStatusValidator;
-import com.movie.store.exceptions.GenreNotFoundException;
-import com.movie.store.exceptions.MovieNotFoundException;
-import com.movie.store.exceptions.StatusNotFoundException;
+import com.movie.store.validator.MovieGenreValidator;
+import com.movie.store.validator.MovieStatusValidator;
+import com.movie.store.exception.GenreNotFoundException;
+import com.movie.store.exception.MovieNotFoundException;
+import com.movie.store.exception.StatusNotFoundException;
 import com.movie.store.mapper.MovieMapper;
 import com.movie.store.domain.MovieDto;
 import com.movie.store.service.MovieService;
@@ -91,5 +91,11 @@ public class MovieController {
     public List<MovieDto> getMoviesPlannedToWatch() {
         List<Movie> watchList = service.getAllMoviesPlannedToWatch();
         return movieMapper.mapToMovieDtoList(watchList);
+    }
+
+    @GetMapping(value = "movies/rating")
+    public List<MovieDto> getMoviesWithRating(@RequestParam int rating) {
+        List<Movie> moviesWithRating = service.getAllMoviesWithRating(rating);
+        return movieMapper.mapToMovieDtoList(moviesWithRating);
     }
 }

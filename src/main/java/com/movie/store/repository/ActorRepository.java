@@ -12,10 +12,8 @@ public interface ActorRepository extends CrudRepository<Actor, Long> {
     @Override
     List<Actor> findAll();
 
-    List<Actor> findByName(String name);
-
     List<Actor> findByNameContaining(String name);
 
-    @Query
-    List<Actor> findActorsPlayedInMovieWithTitle(@Param("TITLE") String title);
+    @Query(nativeQuery = true)
+    List<Actor> findActorsPlayedInMovieWithTitle(@Param("title") String title);
 }

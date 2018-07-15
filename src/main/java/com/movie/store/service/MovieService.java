@@ -40,4 +40,8 @@ public class MovieService {
     public List<Movie> getAllMoviesPlannedToWatch() {
         return movieRepository.getMoviesPlannedToWatch();
     }
+
+    public List<Movie> getAllMoviesWithRating(int rating) {
+        return movieRepository.getMoviesWithRating(rating);
+    }
 }

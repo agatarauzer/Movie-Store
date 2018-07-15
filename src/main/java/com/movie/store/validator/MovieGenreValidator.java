@@ -1,6 +1,6 @@
-package com.movie.store.validators;
+package com.movie.store.validator;
 
-import com.movie.store.exceptions.GenreNotFoundException;
+import com.movie.store.exception.GenreNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;

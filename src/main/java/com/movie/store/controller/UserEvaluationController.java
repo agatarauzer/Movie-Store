@@ -1,4 +1,4 @@
-package com.movie.store.controllerRest;
+package com.movie.store.controller;
 
 
 import org.springframework.web.bind.annotation.RestController;
