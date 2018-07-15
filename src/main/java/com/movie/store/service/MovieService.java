@@ -32,4 +32,12 @@ public class MovieService {
     public List<Movie> getMovies(String title) {
         return movieRepository.findByTitle(title);
     }
+
+    public List<Movie> getAllWatchedMovies() {
+        return movieRepository.getWatchedMovies();
+    }
+
+    public List<Movie> getAllMoviesPlannedToWatch() {
+        return movieRepository.getMoviesPlannedToWatch();
+    }
 }

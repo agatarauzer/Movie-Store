@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v2/movie-store")
-public class ActorControllerRest {
+public class ActorController {
 
     @Autowired
     private ActorService service;

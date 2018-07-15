@@ -30,7 +30,7 @@ public class UserEvaluation {
     private int rating;
 
     @Column(name = "STATUS")
-    private MovieStatus status;
+    private String status;
 
     @Column(name="DATE_OF_WATCHING")
     @JsonFormat(pattern = "dd MM yyyy")
@@ -41,7 +41,6 @@ public class UserEvaluation {
 
     @OneToOne(mappedBy = "userEvaluation")
     private Movie movie;
-
 
 }
 

@@ -1,4 +1,4 @@
-package com.movie.store.controllerRest;
+package com.movie.store.exceptions;
 
 public class MovieNotFoundException extends Exception {
 }
