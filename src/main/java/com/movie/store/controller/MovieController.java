@@ -37,28 +37,24 @@ public class MovieController {
         return movieMapper.mapToMovieDtoList(movies);
     }
 
-    @GetMapping(value = "movie-id")
+    @GetMapping(value = "movie/id")
     public MovieDto getMovieById(@RequestParam Long id) throws MovieNotFoundException {
         Movie movie = service.getMovie(id).orElseThrow(MovieNotFoundException::new);
         return movieMapper.mapToMovieDto(movie);
     }
 
-    @GetMapping(value = "movie-title")
+    @GetMapping(value = "movie/title")
     public List<MovieDto> getMoviesByTitle(@RequestParam String title) {
         List<Movie> movies = service.getMovies(title);
         return movieMapper.mapToMovieDtoList(movies);
     }
 
     @PostMapping(value = "movie", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addMovie(@RequestBody MovieDto movieDto) {
-
-        try {
-            movieGenreValidator.validateGenre(movieDto.getGenre());
-            movieStatusValidator.validateStatus(movieDto.getUserEvaluation().getStatus());
-            Movie movie = movieMapper.mapToMovie(movieDto);
-            service.saveMovie(movie);
-        }
-        catch (StatusNotFoundException | GenreNotFoundException e) {}
+    public void addMovie(@RequestBody MovieDto movieDto) throws GenreNotFoundException, StatusNotFoundException {
+        movieGenreValidator.validateGenre(movieDto.getGenre());
+        movieStatusValidator.validateStatus(movieDto.getUserEvaluation().getStatus());
+        Movie movie = movieMapper.mapToMovie(movieDto);
+        service.saveMovie(movie);
     }
 
     @DeleteMapping(value = "movie")
@@ -67,18 +63,12 @@ public class MovieController {
     }
 
     @PutMapping(value = "movie")
-    public MovieDto updateMovie(@RequestBody MovieDto movieDto) {
-
-        try {
+    public MovieDto updateMovie(@RequestBody MovieDto movieDto) throws GenreNotFoundException, StatusNotFoundException {
             movieGenreValidator.validateGenre(movieDto.getGenre());
             movieStatusValidator.validateStatus(movieDto.getUserEvaluation().getStatus());
             Movie movie = movieMapper.mapToMovie(movieDto);
             Movie savedMovie = service.saveMovie(movie);
             return movieMapper.mapToMovieDto(savedMovie);
-        }
-        catch (StatusNotFoundException |GenreNotFoundException e) {}
-
-        return movieDto;
     }
 
     @GetMapping(value = "movies/watched")

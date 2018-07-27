@@ -18,7 +18,6 @@ import java.util.List;
                 "ORDER BY Actors.name",
         resultClass = Actor.class)
 
-
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor

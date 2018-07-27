@@ -26,7 +26,7 @@ public class UserEvaluation {
 
     @Column(name = "RATING")
     @Min(1)
-    @Max(5)
+    @Max(10)
     private int rating;
 
     @Column(name = "STATUS")
@@ -49,7 +49,6 @@ public class UserEvaluation {
         this.dateOfWatching = dateOfWatching;
         this.comment = comment;
     }
-
 }
 
 

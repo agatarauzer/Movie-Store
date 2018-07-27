@@ -13,14 +13,12 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MovieDto {
-
-    //@NotNull
     private long id;
 
-    //@NotEmpty(message = "Title is required")
+    @NotEmpty(message = "Title is required")
     private String title;
 
-   // @NotEmpty(message = "Director is required")
+    @NotEmpty(message = "Director is required")
     private String director;
 
     private int year;
