@@ -50,11 +50,12 @@ public class MovieController {
     }
 
     @PostMapping(value = "movie", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addMovie(@RequestBody MovieDto movieDto) throws GenreNotFoundException, StatusNotFoundException {
+    public MovieDto addMovie(@RequestBody MovieDto movieDto) throws GenreNotFoundException, StatusNotFoundException {
         movieGenreValidator.validateGenre(movieDto.getGenre());
         movieStatusValidator.validateStatus(movieDto.getUserEvaluation().getStatus());
         Movie movie = movieMapper.mapToMovie(movieDto);
-        service.saveMovie(movie);
+        Movie savedMovie = service.saveMovie(movie);
+        return movieMapper.mapToMovieDto(savedMovie);
     }
 
     @DeleteMapping(value = "movie")

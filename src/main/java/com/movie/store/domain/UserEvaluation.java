@@ -1,9 +1,11 @@
 package com.movie.store.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
@@ -14,6 +16,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Entity
 @Table(name = "USERS_EVALUATIONS")
 public class UserEvaluation {
@@ -32,8 +35,8 @@ public class UserEvaluation {
     @Column(name = "STATUS")
     private String status;
 
-    @Column(name="DATE_OF_WATCHING")
-    @JsonFormat(pattern = "dd MM yyyy")
+    @Column(name = "DATE_OF_WATCHING")
+    @JsonSerialize(using = LocalDateSerializer.class)
     private LocalDate dateOfWatching;
 
     @Column(name = "COMMENT")
