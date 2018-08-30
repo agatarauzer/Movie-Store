@@ -18,11 +18,11 @@ public class OmdbService {
         return omdbClient.getMovieInfoByTitle(title);
     }
 
-    public MovieOmdbFullDto getMovieOmdbInfoById(String id) {
+    public MovieOmdbFullDto getMovieOmdbInfoById(String id) throws MovieNotFoundInImdbException {
         return omdbClient.getMovieInfoById(id);
     }
 
-    public OmdbSearchResults getMoviesFromOmdbByWord(String word) {
+    public OmdbSearchResults getMoviesFromOmdbByWord(String word) throws MovieNotFoundInImdbException {
         return omdbClient.getMovies(word);
     }
 }

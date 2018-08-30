@@ -22,15 +22,15 @@ public class OmdbClient {
     public MovieOmdbFullDto getMovieInfoByTitle(String title) throws MovieNotFoundInImdbException {
         MovieOmdbFullDto movie = restTemplate.getForObject(buildURLToGetMovieInfoByTitle(title), MovieOmdbFullDto.class);
         if (movie.getOmdbId().equals(null)) {
-            throw new MovieNotFoundInImdbException();
+            throw new MovieNotFoundInImdbException("title: " + title + "was not found in IMDB database");
         }
         return movie;
     }
 
     public MovieOmdbFullDto getMovieInfoById(String id) throws MovieNotFoundInImdbException {
         MovieOmdbFullDto movie = restTemplate.getForObject(buildURLToGetMovieInfoById(id), MovieOmdbFullDto.class);
-        if (movie.getOmdbId().equals(null)) {
-            throw new MovieNotFoundInImdbException();
+        if (movie.getOmdbId() == null) {
+            throw new MovieNotFoundInImdbException("movie with id: " + id + " was not found in IMDB database");
         }
         return movie;
     }
@@ -38,7 +38,7 @@ public class OmdbClient {
     public OmdbSearchResults getMovies(String word) throws MovieNotFoundInImdbException {
         OmdbSearchResults result = restTemplate.getForObject(buildURLToSearchMoviesByWord(word), OmdbSearchResults.class);
         if (result.getMovies().equals(null)) {
-            throw new MovieNotFoundInImdbException();
+            throw new MovieNotFoundInImdbException("movie with title containing: " + word + " was not found in IMDB database");
         }
         return result;
     }

@@ -23,12 +23,12 @@ public class OmdbController {
     }
 
     @GetMapping(value = "id/{id}")
-    public MovieOmdbFullDto getMovieInfoById(@PathVariable String id) {
+    public MovieOmdbFullDto getMovieInfoById(@PathVariable String id) throws MovieNotFoundInImdbException {
         return omdbService.getMovieOmdbInfoById(id);
     }
 
     @GetMapping(value = "word/{word}")
-    public OmdbSearchResults getMoviesWithTitlesContaining(@PathVariable String word) {
+    public OmdbSearchResults getMoviesWithTitlesContaining(@PathVariable String word) throws MovieNotFoundInImdbException {
         return omdbService.getMoviesFromOmdbByWord(word);
     }
 }
