@@ -1,7 +1,7 @@
 package com.movie.store.controller;
 
 import com.movie.store.domain.MovieOmdbFullDto;
-import com.movie.store.domain.OmdbSearchResults;
+import com.movie.store.domain.OmdbSearchResultsDto;
 import com.movie.store.exception.MovieNotFoundInImdbException;
 import com.movie.store.service.OmdbService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class OmdbController {
     }
 
     @GetMapping(value = "word/{word}")
-    public OmdbSearchResults getMoviesWithTitlesContaining(@PathVariable String word) throws MovieNotFoundInImdbException {
+    public OmdbSearchResultsDto getMoviesWithTitlesContaining(@PathVariable String word) throws MovieNotFoundInImdbException {
         return omdbService.getMoviesFromOmdbByWord(word);
     }
 }

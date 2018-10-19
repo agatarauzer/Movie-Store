@@ -15,4 +15,5 @@ public class UserEvaluationDto {
     private String status;
     private LocalDate dateOfWatching;
     private String comment;
+
 }

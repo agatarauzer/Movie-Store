@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,9 +29,11 @@ public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ACTOR_ID", unique = true)
-    private long id;
+    @NotNull
+    private Long id;
 
     @Column(name = "NAME")
+    @NotNull
     private String name;
 
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "actors")

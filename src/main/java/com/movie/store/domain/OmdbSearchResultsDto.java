@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OmdbSearchResults {
+public class OmdbSearchResultsDto {
 
     @JsonProperty("Search")
     private List<MovieOmdbBasicDto> movies;

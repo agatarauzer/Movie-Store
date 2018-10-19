@@ -42,7 +42,7 @@ public class MovieOmdbFullDto {
     private List<String> countries;
 
     @JsonProperty("imdbRating")
-    private String ratingIMD;
+    private String ratingOmbd;
 
     @JsonSetter("Actors")
     public void setActors(String actorsList) {

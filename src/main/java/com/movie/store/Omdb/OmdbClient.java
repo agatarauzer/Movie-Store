@@ -1,7 +1,7 @@
 package com.movie.store.Omdb;
 
 import com.movie.store.domain.MovieOmdbFullDto;
-import com.movie.store.domain.OmdbSearchResults;
+import com.movie.store.domain.OmdbSearchResultsDto;
 import com.movie.store.exception.MovieNotFoundInImdbException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -35,8 +35,8 @@ public class OmdbClient {
         return movie;
     }
 
-    public OmdbSearchResults getMovies(String word) throws MovieNotFoundInImdbException {
-        OmdbSearchResults result = restTemplate.getForObject(buildURLToSearchMoviesByWord(word), OmdbSearchResults.class);
+    public OmdbSearchResultsDto getMovies(String word) throws MovieNotFoundInImdbException {
+        OmdbSearchResultsDto result = restTemplate.getForObject(buildURLToSearchMoviesByWord(word), OmdbSearchResultsDto.class);
         if (result.getMovies().equals(null)) {
             throw new MovieNotFoundInImdbException("movie with title containing: " + word + " was not found in IMDB database");
         }

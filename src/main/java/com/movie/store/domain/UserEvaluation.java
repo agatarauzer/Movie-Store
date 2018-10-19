@@ -2,7 +2,6 @@ package com.movie.store.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +13,6 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity
@@ -42,10 +40,10 @@ public class UserEvaluation {
     @Column(name = "COMMENT")
     private String comment;
 
-    @OneToOne(mappedBy = "userEvaluation")
+    @OneToOne(mappedBy = "userEvaluation", cascade = CascadeType.ALL)
     private Movie movie;
 
-    public UserEvaluation(long id, int rating, String status, LocalDate dateOfWatching, String comment) {
+    public UserEvaluation(Long id, int rating, String status, LocalDate dateOfWatching, String comment) {
         this.id = id;
         this.rating = rating;
         this.status = status;

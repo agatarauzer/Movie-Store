@@ -2,7 +2,7 @@ package com.movie.store.service;
 
 import com.movie.store.Omdb.OmdbClient;
 import com.movie.store.domain.MovieOmdbFullDto;
-import com.movie.store.domain.OmdbSearchResults;
+import com.movie.store.domain.OmdbSearchResultsDto;
 import com.movie.store.exception.MovieNotFoundInImdbException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ public class OmdbService {
         return omdbClient.getMovieInfoById(id);
     }
 
-    public OmdbSearchResults getMoviesFromOmdbByWord(String word) throws MovieNotFoundInImdbException {
+    public OmdbSearchResultsDto getMoviesFromOmdbByWord(String word) throws MovieNotFoundInImdbException {
         return omdbClient.getMovies(word);
     }
 }

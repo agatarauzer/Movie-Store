@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -50,7 +51,7 @@ public class MovieController {
     }
 
     @PostMapping(value = "movie", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public MovieDto addMovie(@RequestBody MovieDto movieDto) throws GenreNotFoundException, StatusNotFoundException {
+    public MovieDto addMovie(@Valid @RequestBody MovieDto movieDto) throws GenreNotFoundException, StatusNotFoundException {
         movieGenreValidator.validateGenre(movieDto.getGenre());
         movieStatusValidator.validateStatus(movieDto.getUserEvaluation().getStatus());
         Movie movie = movieMapper.mapToMovie(movieDto);
@@ -64,12 +65,8 @@ public class MovieController {
     }
 
     @PutMapping(value = "movie")
-    public MovieDto updateMovie(@RequestBody MovieDto movieDto) throws GenreNotFoundException, StatusNotFoundException {
-            movieGenreValidator.validateGenre(movieDto.getGenre());
-            movieStatusValidator.validateStatus(movieDto.getUserEvaluation().getStatus());
-            Movie movie = movieMapper.mapToMovie(movieDto);
-            Movie savedMovie = service.saveMovie(movie);
-            return movieMapper.mapToMovieDto(savedMovie);
+    public MovieDto updateMovie(@Valid @RequestBody MovieDto movieDto) throws GenreNotFoundException, StatusNotFoundException {
+            return addMovie(movieDto);
     }
 
     @GetMapping(value = "movies/watched")

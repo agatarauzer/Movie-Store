@@ -9,7 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class ActorDto {
-    private long id;
+    private Long id;
     private String name;
     private List<Movie> movies;
 
